@@ -1,0 +1,29 @@
+GET http://localhost:3000/board
+
+
+###
+GET http://localhost:3000/board/2
+
+
+###
+POST http://localhost:3000/board
+Content-Type: application/json
+
+{
+    "name": "spark",
+    "content": "dyaos"
+}
+
+
+###
+PUT http://localhost:3000/board/1
+Content-Type: application/json
+
+{
+    "name": "hellow",
+    "contents": "orld"
+}
+
+
+###
+DELETE http://localhost:3000/board/3
