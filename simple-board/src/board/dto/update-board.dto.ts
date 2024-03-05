@@ -1,6 +1,6 @@
-import { PartialType, PickType } from "@nestjs/swagger";
-import { IsOptional, MaxLength, MinLength } from "class-validator";
-import { CreateBoardDto } from "./create-board.dto";
+// import { PartialType, PickType } from "@nestjs/swagger";
+import { IsOptional, MaxLength, MinLength } from 'class-validator';
+// import { CreateBoardDto } from "./≥create-board.dto";
 
 export class UpdateBoardDto {
   @IsOptional()
