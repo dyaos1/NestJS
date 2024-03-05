@@ -1,5 +1,6 @@
-import { Controller, Get } from '@nestjs/common';
+import { Controller, Get, Query } from '@nestjs/common';
 import { AppService } from './app.service';
+import { Ip } from './decorators/ip.decorator';
 
 @Controller()
 export class AppController {
@@ -8,5 +9,11 @@ export class AppController {
   @Get()
   getHello(): string {
     return this.appService.getHello();
+  }
+
+  @Get('name')
+  getName(@Ip('ip') ip: string, @Query('name') name: string): string {
+    console.log(ip);
+    return `${name} (${ip}) hello`;
   }
 }
