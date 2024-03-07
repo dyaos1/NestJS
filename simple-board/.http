@@ -2,7 +2,7 @@ GET http://localhost:3000/board
 
 
 ###
-GET http://localhost:3000/board/2
+GET http://localhost:3000/board/3
 
 
 ###
@@ -27,3 +27,10 @@ Content-Type: application/json
 
 ###
 DELETE http://localhost:3000/board/3
+
+
+###
+GET http://localhost:3000/name?test=hi
+
+###
+GET http://localhost:3000
