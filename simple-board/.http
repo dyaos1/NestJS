@@ -30,4 +30,7 @@ DELETE http://localhost:3000/board/3
 
 
 ###
-GET http://localhost:3000/name
+GET http://localhost:3000/name?test=hi
+
+###
+GET http://localhost:3000

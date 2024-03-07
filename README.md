@@ -38,5 +38,14 @@ export const Ip = createParamDecorator(
     return request.ip;
   },
 );
-
 ```
+
+### exception filter
+
+### logger module
+
+### configure module
+```
+npm install @nestjs/config
+```
+
