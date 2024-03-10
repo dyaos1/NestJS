@@ -49,3 +49,24 @@ export const Ip = createParamDecorator(
 npm install @nestjs/config
 ```
 
+## feat: database
+### typeORM
+```
+npm install @nestjs/typeorm typeorm pg
+```
+
+### relation
+```
+class User {
+  ...
+  @OneToMany(() => Board, (board) => board.user)
+  boards: Board[];
+}
+```
+```
+class Board {
+  ...
+  @ManyToOne(() => User)
+  user: User;
+}
+```
