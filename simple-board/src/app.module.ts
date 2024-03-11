@@ -5,19 +5,22 @@ import { BoardModule } from './board/board.module';
 import { LoggingMiddleware } from './middleware/logging.middleware';
 import ConfigModule from './config';
 import { TypeOrmModule } from '@nestjs/typeorm';
+import { Board } from './entity/board.entity';
+import { User } from './entity/user.entity';
 
 @Module({
   imports: [
     ConfigModule(),
     TypeOrmModule.forRoot({
       type: 'postgres',
-      host: process.env.DATABASE,
-      port: parseInt(process.env.PORT),
-      username: process.env.USERNAME,
-      password: process.env.PASSWORD,
-      database: process.env.DATABASE,
-      entities: [__dirname + '/**/*.entity{.ts,.js}'],
+      host: process.env.DB_HOST,
+      port: parseInt(process.env.DB_PORT),
+      username: process.env.DB_USERNAME,
+      password: process.env.DB_PASSWORD,
+      database: process.env.DB_DATABASE,
+      entities: [Board, User],
       synchronize: false,
+      logging: true,
     }),
     BoardModule,
   ],

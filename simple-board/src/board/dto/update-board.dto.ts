@@ -1,15 +1,16 @@
 // import { PartialType, PickType } from "@nestjs/swagger";
-import { IsOptional, MaxLength, MinLength } from 'class-validator';
+import { ApiProperty } from '@nestjs/swagger';
+import { IsNotEmpty, IsOptional, MaxLength, MinLength } from 'class-validator';
 // import { CreateBoardDto } from "./≥create-board.dto";
 
 export class UpdateBoardDto {
-  @IsOptional()
-  @MinLength(2)
-  @MaxLength(20)
-  name?: string;
-
-  @IsOptional()
-  contents?: string;
+  @IsNotEmpty()
+  @ApiProperty({
+    description: '내용',
+    required: true,
+    example: 'hello world',
+  })
+  contents: string;
 }
 
 // export class UpdateBoardDto extends PartialType(CreateBoardDto) {}
