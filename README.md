@@ -169,3 +169,58 @@ npm i bcrypt
 ```
 
 > 주의사항: bcrypt에서 생성에 사용되는 hash()와 password 비교에 사용될 compare()는 모두 Promise를 반환함. 특히 compare()에 await 를 붙이지 않으면 모두 true로 착각할 수 있으므로 반드시 await 를 붙일것.
+
+### jwt
+```
+npm i jsonwebtoken
+// npm i -D types@jsontwebtoken
+```
+
+``` typescript
+const accessToken = jwt.sign({payload}, privateKey, options)
+```
+> jsonwebtoken라이브러리는 default export가 없으므로 import * as jwt from 'jsonwebtoken'; 형태로 하여야 함
+> https://github.com/auth0/node-jsonwebtoken
+
+### passport
+```
+npm i @nestjs/passport passport passport-local
+npm i -D @types/passport-local
+```
+
+```
+nest g mo auth
+nest g s auth
+```
+auth 모듈에 TypeOrmModule.forFeature([User]) 및 UserModule imports추가, AuthService exports 추가
+user 모듈에 UserService exports 추가
+
+strategy 추가 (PassportStrategy 상속)
+auth 모듈 provider에 strategy 추가, imports 에 PassportStrategy 추가
+
+authguard 추가
+
+```
+npm i @nestjs/jwt passport-jwt
+npm i -D @types/passport-jwt
+```
+auth 모듈에 JwtModule.register({option}) 추가 ()
+// https://docs.nestjs.com/security/authentication#implementing-the-authentication-guard  참조
+
+auth service에 jwtService 의존성 주입 및, jwtService.sign으로 토큰 생성
+
+### 중간점검  name: feat/passport intermediate inspection
+> 현재까지의 로직이 너무 복잡하니 중간 점검을 한다. app.controller에 임시로 로그인 기능을 추가
+
+1. app controller에서 @UseGuard에 걸림 -> LocalAuthGuard가 인자로 들어있음 -> LocalAuthGuard는 AuthGuard('local')을 상속중
+2. AuthGuard('local')을 통해 (과정은 모르겠지만) LocalStrategy로 연결됨.
+3. LocalStrategy에 들어있는 validate가 자동으로 실행되고, validate method는 authService의 validateUser 결과에 따라 user 반환.
+4. 이 반환된 user값은 request.user에 들어감.
+5. controller는 return 문에 request.user를 받아 authService.login메서드를 호출함
+6. authService는 JwtService를 주입받고 있는데, authModule에서 JwtModule을 설정을 해놓았음. 이를 통해 최종적으로 jwt를 반환.
+
+
+> 의문사항 정리.
+> 1. AuthGuard('local')이 LocalStrategy로 어떻게 연결 되는지, 
+> 2. validate는 어떤 과정으로 실행되고,
+> 3. 반환한 값이 왜때문에 request.user로 들어가게 되는지

@@ -6,6 +6,7 @@ import { Repository } from 'typeorm';
 import { CreateUserDto } from './dto/create-user.dto';
 import { hash, compare } from 'bcrypt';
 import { LoginUserDto } from './dto/login-user.dto';
+import * as jwt from 'jsonwebtoken';
 
 @Injectable()
 export class UserService {
@@ -48,16 +49,31 @@ export class UserService {
 
     const match = await compare(password, user.password);
 
-    console.log(match);
-
     if (!match)
       throw new HttpException('Unauthorized', HttpStatus.UNAUTHORIZED);
 
-    return user;
+    const payload = {
+      username,
+      name: user.name,
+    };
+
+    console.log(jwt);
+
+    const accessToken = jwt.sign(payload, 'sercret_key_you_want', {
+      expiresIn: '1 minutes',
+    });
+
+    return { accessToken };
   }
 
   async encryptPassword(password: string) {
     const DEFAULT_SALT = 11;
     return hash(password, DEFAULT_SALT);
+  }
+
+  async getUserByUsername(username: string) {
+    return this.userRepository.findOneBy({
+      username,
+    });
   }
 }

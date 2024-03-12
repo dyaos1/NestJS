@@ -4,17 +4,24 @@ import {
   HttpException,
   HttpStatus,
   Logger,
+  Post,
   Query,
+  Request,
+  UseGuards,
 } from '@nestjs/common';
 import { AppService } from './app.service';
 import { Ip } from './decorators/ip.decorator';
 import { ConfigService } from '@nestjs/config';
+import { AuthGuard } from '@nestjs/passport';
+import { LocalAuthGuard } from './auth/local-auth.guard';
+import { AuthService } from './auth/auth.service';
 
 @Controller()
 export class AppController {
   constructor(
     private readonly appService: AppService,
     private readonly configService: ConfigService,
+    private readonly authService: AuthService,
   ) {}
 
   private readonly logger = new Logger(AppController.name);
@@ -34,5 +41,11 @@ export class AppController {
     this.logger.verbose(ip);
     this.logger.warn(ip);
     return `${name} (${ip}) hello`;
+  }
+
+  @UseGuards(LocalAuthGuard)
+  @Post('login')
+  async login(@Request() req) {
+    return this.authService.login(req.user);
   }
 }
