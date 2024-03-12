@@ -2,7 +2,7 @@ GET http://localhost:3000/board
 
 
 ###
-GET http://localhost:3000/board/3
+GET http://localhost:3000/board/1
 
 
 ###
@@ -10,23 +10,22 @@ POST http://localhost:3000/board
 Content-Type: application/json
 
 {
-    "name": "spark",
-    "content": "dyaos"
+    "userId": 1,
+    "contents": "hello world3"
 }
 
 
 ###
-PUT http://localhost:3000/board/1
+PUT http://localhost:3000/board/2
 Content-Type: application/json
 
 {
-    "name": "hellow",
-    "contents": "orld"
+    "contents": "hello world"
 }
 
 
 ###
-DELETE http://localhost:3000/board/3
+DELETE http://localhost:3000/board/4
 
 
 ###

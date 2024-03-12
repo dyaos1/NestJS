@@ -4,9 +4,26 @@ import { AppService } from './app.service';
 import { BoardModule } from './board/board.module';
 import { LoggingMiddleware } from './middleware/logging.middleware';
 import ConfigModule from './config';
+import { TypeOrmModule } from '@nestjs/typeorm';
+import { Board } from './entity/board.entity';
+import { User } from './entity/user.entity';
 
 @Module({
-  imports: [ConfigModule(), BoardModule],
+  imports: [
+    ConfigModule(),
+    TypeOrmModule.forRoot({
+      type: 'postgres',
+      host: process.env.DB_HOST,
+      port: parseInt(process.env.DB_PORT),
+      username: process.env.DB_USERNAME,
+      password: process.env.DB_PASSWORD,
+      database: process.env.DB_DATABASE,
+      entities: [Board, User],
+      synchronize: false,
+      logging: true,
+    }),
+    BoardModule,
+  ],
   controllers: [AppController],
   providers: [AppService],
 })
