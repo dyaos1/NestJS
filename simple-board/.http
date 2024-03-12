@@ -35,5 +35,26 @@ GET http://localhost:3000/name?test=hi
 GET http://localhost:3000
 
 
-###
+### get user
 GET http://localhost:3000/user
+
+
+### create user
+POST http://localhost:3000/user
+Content-Type: application/json
+
+{
+    "username": "username3",
+    "password": "password3",
+    "name": "name3"
+}
+
+
+### login user
+POST http://localhost:3000/user/login
+Content-Type: application/json
+
+{
+    "username": "username3",
+    "password": "password3"
+}

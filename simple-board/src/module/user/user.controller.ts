@@ -1,23 +1,25 @@
-import { Controller, Get } from '@nestjs/common';
+import { Body, Controller, Get, Post, ValidationPipe } from '@nestjs/common';
 import { UserService } from './user.service';
+import { CreateUserDto } from './dto/create-user.dto';
+import { LoginUserDto } from './dto/login-user.dto';
 
 @Controller('user')
 export class UserController {
   constructor(private readonly userService: UserService) {}
-  signup() {
 
+  @Post()
+  signup(@Body(new ValidationPipe()) data: CreateUserDto) {
+    return this.userService.createUser(data);
   }
 
-  login() {
-
-  }
-
-  me() {
-
+  @Post('login')
+  login(@Body(new ValidationPipe()) data: LoginUserDto) {
+    return this.userService.loginUser(data);
   }
 
   @Get()
   getUsers() {
+    console.log('hi');
     return this.userService.getUser();
   }
 }

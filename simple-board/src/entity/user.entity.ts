@@ -17,7 +17,7 @@ export class User {
   @ApiProperty({
     description: '비밀번호',
   })
-  @Column({ select: false })
+  @Column()
   password: string;
 
   @ApiProperty({
@@ -31,4 +31,7 @@ export class User {
   })
   @OneToMany(() => Board, (board) => board.user)
   boards: Board[];
+
+  @Column({ select: false, nullable: true, insert: false, update: false })
+  boardCount: number;
 }

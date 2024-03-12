@@ -1,13 +1,13 @@
 import { MiddlewareConsumer, Module, NestModule } from '@nestjs/common';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
-import { BoardModule } from './board/board.module';
+import { BoardModule } from './module/board/board.module';
 import { LoggingMiddleware } from './middleware/logging.middleware';
 import ConfigModule from './config';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { Board } from './entity/board.entity';
 import { User } from './entity/user.entity';
-import { UserModule } from './user/user.module';
+import { UserModule } from './module/user/user.module';
 
 @Module({
   imports: [
