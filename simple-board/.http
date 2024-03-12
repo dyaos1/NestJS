@@ -33,3 +33,7 @@ GET http://localhost:3000/name?test=hi
 
 ###
 GET http://localhost:3000
+
+
+###
+GET http://localhost:3000/user
