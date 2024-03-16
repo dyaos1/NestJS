@@ -224,3 +224,8 @@ auth service에 jwtService 의존성 주입 및, jwtService.sign으로 토큰 �
 > 1. AuthGuard('local')이 LocalStrategy로 어떻게 연결 되는지, 
 > 2. validate는 어떤 과정으로 실행되고,
 > 3. 반환한 값이 왜때문에 request.user로 들어가게 되는지
+
+### (이어서) jwt 체크 로직
+> 설명: jwt토큰이 유요한지 확인해서 유요하면 토큰을 반환하는 api 추가
+- jwt.stratege.ts 파일 생성 > PassportStrategy(Strategy) 상속 > Bearer 토큰을 가져오는 설정 > validate 메서드를 생성
+- jwt-auth.guard.ts 파일 생성 > jwt 가드 상속

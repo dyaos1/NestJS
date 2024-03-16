@@ -60,7 +60,7 @@ Content-Type: application/json
 }
 
 
-### login user
+### login user jwt test
 POST http://localhost:3000/login
 Content-Type: application/json
 
@@ -68,3 +68,9 @@ Content-Type: application/json
     "username": "username3",
     "password": "password3"
 }
+
+
+### jwt token test
+GET http://localhost:3000/me
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InVzZXJuYW1lMyIsIm5hbWUiOiJuYW1lMyIsImlhdCI6MTcxMDM5MDI5MiwiZXhwIjoxNzEwNDc2NjkyfQ.EDnDDs4UNcHQAzvQUE_Tu_XOv6Jo1P0lKS-GjlfsjrA
