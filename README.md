@@ -229,3 +229,8 @@ auth service에 jwtService 의존성 주입 및, jwtService.sign으로 토큰 �
 > 설명: jwt토큰이 유요한지 확인해서 유요하면 토큰을 반환하는 api 추가
 - jwt.stratege.ts 파일 생성 > PassportStrategy(Strategy) 상속 > Bearer 토큰을 가져오는 설정 > validate 메서드를 생성
 - jwt-auth.guard.ts 파일 생성 > jwt 가드 상속
+
+### 객체 직렬화
+> 설명: 현재 상태에서는 user entity를 조회하면 password가 그대로 노출됨. ClassSerializerInterceptor 를 구현하여 원하는 내용을 보여줄 수 있도록 한다.
+
+entity에 Exclude() annotation 삽입 + controller에 @UseInterceptors(ClassSerializerInterceptor) 삽입

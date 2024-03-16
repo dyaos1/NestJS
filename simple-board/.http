@@ -73,4 +73,32 @@ Content-Type: application/json
 ### jwt token test
 GET http://localhost:3000/me
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InVzZXJuYW1lMyIsIm5hbWUiOiJuYW1lMyIsImlhdCI6MTcxMDM5MDI5MiwiZXhwIjoxNzEwNDc2NjkyfQ.EDnDDs4UNcHQAzvQUE_Tu_XOv6Jo1P0lKS-GjlfsjrA
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NSwidXNlcm5hbWUiOiJ1c2VybmFtZTMiLCJuYW1lIjoibmFtZTMiLCJpYXQiOjE3MTA1NzUzOTAsImV4cCI6MTcxMDY2MTc5MH0.Rcj_pbu3vuSHTiNyNMbqLRgbAcvYNtiFo-itOIJcEpU
+
+
+### jwt create board
+POST http://localhost:3000/board
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NSwidXNlcm5hbWUiOiJ1c2VybmFtZTMiLCJuYW1lIjoibmFtZTMiLCJpYXQiOjE3MTA1NzUzOTAsImV4cCI6MTcxMDY2MTc5MH0.Rcj_pbu3vuSHTiNyNMbqLRgbAcvYNtiFo-itOIJcEpU
+
+{
+    "contents": "new api test for delete!!"
+}
+
+### jwt update board
+PUT http://localhost:3000/board/6
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NSwidXNlcm5hbWUiOiJ1c2VybmFtZTMiLCJuYW1lIjoibmFtZTMiLCJpYXQiOjE3MTA1NzUzOTAsImV4cCI6MTcxMDY2MTc5MH0.Rcj_pbu3vuSHTiNyNMbqLRgbAcvYNtiFo-itOIJcEpU
+
+{
+    "contents": "new api test!!"
+}
+
+### jwt delete board
+DELETE http://localhost:3000/board/7
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NSwidXNlcm5hbWUiOiJ1c2VybmFtZTMiLCJuYW1lIjoibmFtZTMiLCJpYXQiOjE3MTA1NzUzOTAsImV4cCI6MTcxMDY2MTc5MH0.Rcj_pbu3vuSHTiNyNMbqLRgbAcvYNtiFo-itOIJcEpU
+
+{
+    "contents": "new api test!!"
+}
