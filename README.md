@@ -125,6 +125,7 @@ this.boardRepository.findOne({
 >
 > entities: [__dirname + '/**/*.entity{.ts,.js}'], 이렇게 하는게 답인듯
 
+---
 ## Authenticate
 
 ### query builder 를 이용해 virtual column 불러오기
@@ -234,3 +235,17 @@ auth service에 jwtService 의존성 주입 및, jwtService.sign으로 토큰 �
 > 설명: 현재 상태에서는 user entity를 조회하면 password가 그대로 노출됨. ClassSerializerInterceptor 를 구현하여 원하는 내용을 보여줄 수 있도록 한다.
 
 entity에 Exclude() annotation 삽입 + controller에 @UseInterceptors(ClassSerializerInterceptor) 삽입
+
+---
+## deploy
+
+- .env.production 파일을 적용시키기  
+```npm install cross-env```
+```json
+  //package.json 수정
+    "start:dev": "cross-env NODE_ENV=development nest start --watch",
+    "start:prod": "cross-env NODE_ENV=production node dist/main",
+
+  //config.index 수정
+  envFilePath: `.env.${process.env.NODE_ENV}`,
+```
